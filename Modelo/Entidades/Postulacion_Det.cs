@@ -15,8 +15,8 @@ namespace Modelo.Entidades
         public int PostulacionId { get; set; }
 
         //Propiedades de la relacion con oferta
-        public Oferta Oferta { get; set; }
-        public int OfertaId { get; set; }
+        //public Oferta Oferta { get; set; }
+        //public int OfertaId { get; set; }
 
         //Propiedades de la relacion con calificaicon
         public Calificacion Calificacion { get; set; }

@@ -13,11 +13,11 @@ namespace Modelo.Entidades
         public float LoteMinimo { get; set; }
         public float Descuento { get; set; }
         public Boolean Garantia { get; set; }
-        public int TiempoEntrefa { get; set; }
+        public int TiempoEntrega { get; set; }
         public int ScoreBuro { get; set; }
 
         //Detalle de la postulacion
-        public List<Postulacion_Det> Postulacion_Detalle { get; set; }
+        //public List<Postulacion_Det> Postulacion_Detalle { get; set; }
 
 
         //Propiedades de la relacion con producto
@@ -25,7 +25,7 @@ namespace Modelo.Entidades
         public int ProductoId { get; set; }
 
         //Propiedades de la relacion con proveedor
-        public Producto Proveedor { get; set; }
+        public Proveedor Proveedor { get; set; }
         public int ProveedorId { get; set; }
     }
 }

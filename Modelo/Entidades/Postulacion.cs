@@ -16,7 +16,7 @@ namespace Modelo.Entidades
         public List<Postulacion_Det> Postulacion_Detalle { get; set; }
 
         //Propiedades de la relacion con proveedor
-        public Producto Proveedor { get; set; }
+        public Proveedor Proveedor { get; set; }
         public int ProveedorId { get; set; }
 
         //Propiedades de la relacion con periodo

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ModeloBD.Migrations
 {
-    public partial class InicioSCP : Migration
+    public partial class IniSCP : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -57,8 +57,6 @@ namespace ModeloBD.Migrations
                 name: "configuracion",
                 columns: table => new
                 {
-                    ConfiguracionId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
                     NotaMinima = table.Column<float>(type: "real", nullable: false),
                     PesoNota1 = table.Column<float>(type: "real", nullable: false),
                     PesoNota2 = table.Column<float>(type: "real", nullable: false),
@@ -71,7 +69,6 @@ namespace ModeloBD.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_configuracion", x => x.ConfiguracionId);
                     table.ForeignKey(
                         name: "FK_configuracion_periodos_PeriodoId",
                         column: x => x.PeriodoId,
@@ -90,7 +87,7 @@ namespace ModeloBD.Migrations
                     LoteMinimo = table.Column<float>(type: "real", nullable: false),
                     Descuento = table.Column<float>(type: "real", nullable: false),
                     Garantia = table.Column<bool>(type: "bit", nullable: false),
-                    TiempoEntrefa = table.Column<int>(type: "int", nullable: false),
+                    TiempoEntrega = table.Column<int>(type: "int", nullable: false),
                     ScoreBuro = table.Column<int>(type: "int", nullable: false),
                     ProductoId = table.Column<int>(type: "int", nullable: false),
                     ProveedorId = table.Column<int>(type: "int", nullable: false),

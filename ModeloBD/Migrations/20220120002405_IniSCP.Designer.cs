@@ -10,8 +10,8 @@ using ModeloBD;
 namespace ModeloBD.Migrations
 {
     [DbContext(typeof(Repositorio))]
-    [Migration("20220119001546_InicioSCP")]
-    partial class InicioSCP
+    [Migration("20220120002405_IniSCP")]
+    partial class IniSCP
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -62,11 +62,6 @@ namespace ModeloBD.Migrations
 
             modelBuilder.Entity("Modelo.Entidades.Configuracion", b =>
                 {
-                    b.Property<int>("ConfiguracionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<float>("NotaMinima")
                         .HasColumnType("real");
 
@@ -93,8 +88,6 @@ namespace ModeloBD.Migrations
 
                     b.Property<float>("PesoNota7")
                         .HasColumnType("real");
-
-                    b.HasKey("ConfiguracionId");
 
                     b.HasIndex("PeriodoId");
 
@@ -132,7 +125,7 @@ namespace ModeloBD.Migrations
                     b.Property<int>("ScoreBuro")
                         .HasColumnType("int");
 
-                    b.Property<int>("TiempoEntrefa")
+                    b.Property<int>("TiempoEntrega")
                         .HasColumnType("int");
 
                     b.HasKey("OfertaId");

@@ -10,7 +10,7 @@ using ModeloBD;
 namespace ModeloBD.Migrations
 {
     [DbContext(typeof(Repositorio))]
-    [Migration("20220120002405_IniSCP")]
+    [Migration("20220121155416_IniSCP")]
     partial class IniSCP
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,6 +60,21 @@ namespace ModeloBD.Migrations
                     b.ToTable("calificaciones");
                 });
 
+            modelBuilder.Entity("Modelo.Entidades.Clasificacion", b =>
+                {
+                    b.Property<int>("MarcaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("MarcaId", "ProductoId");
+
+                    b.HasIndex("ProductoId");
+
+                    b.ToTable("clasificaciones");
+                });
+
             modelBuilder.Entity("Modelo.Entidades.Configuracion", b =>
                 {
                     b.Property<float>("NotaMinima")
@@ -91,12 +106,47 @@ namespace ModeloBD.Migrations
 
                     b.HasIndex("PeriodoId");
 
-                    b.ToTable("configuracion");
+                    b.ToTable("configuraciones");
+                });
+
+            modelBuilder.Entity("Modelo.Entidades.Marca", b =>
+                {
+                    b.Property<int>("MarcaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MarcaId");
+
+                    b.ToTable("marcas");
                 });
 
             modelBuilder.Entity("Modelo.Entidades.Oferta", b =>
                 {
                     b.Property<int>("OfertaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("PeriodoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ScoreBuro")
+                        .HasColumnType("int");
+
+                    b.HasKey("OfertaId");
+
+                    b.HasIndex("PeriodoId");
+
+                    b.ToTable("ofertas");
+                });
+
+            modelBuilder.Entity("Modelo.Entidades.Oferta_Det", b =>
+                {
+                    b.Property<int>("Oferta_DetId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -110,7 +160,7 @@ namespace ModeloBD.Migrations
                     b.Property<float>("LoteMinimo")
                         .HasColumnType("real");
 
-                    b.Property<int?>("PeriodoId")
+                    b.Property<int>("OfertaId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Precio")
@@ -119,24 +169,16 @@ namespace ModeloBD.Migrations
                     b.Property<int>("ProductoId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProveedorId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ScoreBuro")
-                        .HasColumnType("int");
-
                     b.Property<int>("TiempoEntrega")
                         .HasColumnType("int");
 
-                    b.HasKey("OfertaId");
+                    b.HasKey("Oferta_DetId");
 
-                    b.HasIndex("PeriodoId");
+                    b.HasIndex("OfertaId");
 
                     b.HasIndex("ProductoId");
 
-                    b.HasIndex("ProveedorId");
-
-                    b.ToTable("ofertas");
+                    b.ToTable("ofertas_det");
                 });
 
             modelBuilder.Entity("Modelo.Entidades.Periodo", b =>
@@ -173,6 +215,9 @@ namespace ModeloBD.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("OfertaId")
+                        .HasColumnType("int");
+
                     b.Property<int>("PeriodoId")
                         .HasColumnType("int");
 
@@ -180,6 +225,8 @@ namespace ModeloBD.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("PostulacionId");
+
+                    b.HasIndex("OfertaId");
 
                     b.HasIndex("PeriodoId");
 
@@ -261,6 +308,25 @@ namespace ModeloBD.Migrations
                     b.Navigation("Postulacion_Det");
                 });
 
+            modelBuilder.Entity("Modelo.Entidades.Clasificacion", b =>
+                {
+                    b.HasOne("Modelo.Entidades.Marca", "Marca")
+                        .WithMany("Clasificacion")
+                        .HasForeignKey("MarcaId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Modelo.Entidades.Producto", "Producto")
+                        .WithMany("Clasificacion")
+                        .HasForeignKey("ProductoId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Marca");
+
+                    b.Navigation("Producto");
+                });
+
             modelBuilder.Entity("Modelo.Entidades.Configuracion", b =>
                 {
                     b.HasOne("Modelo.Entidades.Periodo", "PeriodoVigente")
@@ -274,40 +340,55 @@ namespace ModeloBD.Migrations
 
             modelBuilder.Entity("Modelo.Entidades.Oferta", b =>
                 {
-                    b.HasOne("Modelo.Entidades.Periodo", null)
-                        .WithMany("Oferta")
-                        .HasForeignKey("PeriodoId");
-
-                    b.HasOne("Modelo.Entidades.Producto", "Producto")
-                        .WithMany()
-                        .HasForeignKey("ProductoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Modelo.Entidades.Proveedor", "Proveedor")
-                        .WithMany("Oferta")
-                        .HasForeignKey("ProveedorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Producto");
-
-                    b.Navigation("Proveedor");
-                });
-
-            modelBuilder.Entity("Modelo.Entidades.Postulacion", b =>
-                {
                     b.HasOne("Modelo.Entidades.Periodo", "Periodo")
-                        .WithMany("Postulacion")
+                        .WithMany("Oferta")
                         .HasForeignKey("PeriodoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Periodo");
+                });
+
+            modelBuilder.Entity("Modelo.Entidades.Oferta_Det", b =>
+                {
+                    b.HasOne("Modelo.Entidades.Oferta", "Oferta")
+                        .WithMany("Oferta_Det")
+                        .HasForeignKey("OfertaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Modelo.Entidades.Producto", "Producto")
+                        .WithMany("Oferta_Det")
+                        .HasForeignKey("ProductoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Oferta");
+
+                    b.Navigation("Producto");
+                });
+
+            modelBuilder.Entity("Modelo.Entidades.Postulacion", b =>
+                {
+                    b.HasOne("Modelo.Entidades.Oferta", "Oferta")
+                        .WithMany("Postulacion")
+                        .HasForeignKey("OfertaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Modelo.Entidades.Periodo", "Periodo")
+                        .WithMany("Postulacion")
+                        .HasForeignKey("PeriodoId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.HasOne("Modelo.Entidades.Proveedor", "Proveedor")
                         .WithMany("Postulacion")
                         .HasForeignKey("ProveedorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Oferta");
 
                     b.Navigation("Periodo");
 
@@ -321,6 +402,18 @@ namespace ModeloBD.Migrations
                         .HasForeignKey("PostulacionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Postulacion");
+                });
+
+            modelBuilder.Entity("Modelo.Entidades.Marca", b =>
+                {
+                    b.Navigation("Clasificacion");
+                });
+
+            modelBuilder.Entity("Modelo.Entidades.Oferta", b =>
+                {
+                    b.Navigation("Oferta_Det");
 
                     b.Navigation("Postulacion");
                 });
@@ -342,10 +435,15 @@ namespace ModeloBD.Migrations
                     b.Navigation("Calificacion");
                 });
 
+            modelBuilder.Entity("Modelo.Entidades.Producto", b =>
+                {
+                    b.Navigation("Clasificacion");
+
+                    b.Navigation("Oferta_Det");
+                });
+
             modelBuilder.Entity("Modelo.Entidades.Proveedor", b =>
                 {
-                    b.Navigation("Oferta");
-
                     b.Navigation("Postulacion");
                 });
 #pragma warning restore 612, 618

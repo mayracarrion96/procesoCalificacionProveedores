@@ -16,7 +16,6 @@ namespace Modelo.Entidades
         public string Correo { get; set; }
 
         //Detalle de la oferta y postulacion
-        public List<Oferta> Oferta { get; set; }
         public List<Postulacion> Postulacion { get; set; }
     }
 }

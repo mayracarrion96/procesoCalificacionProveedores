@@ -8,6 +8,19 @@ namespace ModeloBD.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "marcas",
+                columns: table => new
+                {
+                    MarcaId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_marcas", x => x.MarcaId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "periodos",
                 columns: table => new
                 {
@@ -54,7 +67,7 @@ namespace ModeloBD.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "configuracion",
+                name: "configuraciones",
                 columns: table => new
                 {
                     NotaMinima = table.Column<float>(type: "real", nullable: false),
@@ -70,7 +83,7 @@ namespace ModeloBD.Migrations
                 constraints: table =>
                 {
                     table.ForeignKey(
-                        name: "FK_configuracion_periodos_PeriodoId",
+                        name: "FK_configuraciones_periodos_PeriodoId",
                         column: x => x.PeriodoId,
                         principalTable: "periodos",
                         principalColumn: "PeriodoId",
@@ -83,15 +96,8 @@ namespace ModeloBD.Migrations
                 {
                     OfertaId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Precio = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    LoteMinimo = table.Column<float>(type: "real", nullable: false),
-                    Descuento = table.Column<float>(type: "real", nullable: false),
-                    Garantia = table.Column<bool>(type: "bit", nullable: false),
-                    TiempoEntrega = table.Column<int>(type: "int", nullable: false),
                     ScoreBuro = table.Column<int>(type: "int", nullable: false),
-                    ProductoId = table.Column<int>(type: "int", nullable: false),
-                    ProveedorId = table.Column<int>(type: "int", nullable: false),
-                    PeriodoId = table.Column<int>(type: "int", nullable: true)
+                    PeriodoId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -101,18 +107,59 @@ namespace ModeloBD.Migrations
                         column: x => x.PeriodoId,
                         principalTable: "periodos",
                         principalColumn: "PeriodoId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "clasificaciones",
+                columns: table => new
+                {
+                    MarcaId = table.Column<int>(type: "int", nullable: false),
+                    ProductoId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_clasificaciones", x => new { x.MarcaId, x.ProductoId });
                     table.ForeignKey(
-                        name: "FK_ofertas_productos_ProductoId",
+                        name: "FK_clasificaciones_marcas_MarcaId",
+                        column: x => x.MarcaId,
+                        principalTable: "marcas",
+                        principalColumn: "MarcaId");
+                    table.ForeignKey(
+                        name: "FK_clasificaciones_productos_ProductoId",
+                        column: x => x.ProductoId,
+                        principalTable: "productos",
+                        principalColumn: "ProductoId");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ofertas_det",
+                columns: table => new
+                {
+                    Oferta_DetId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Precio = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    LoteMinimo = table.Column<float>(type: "real", nullable: false),
+                    Descuento = table.Column<float>(type: "real", nullable: false),
+                    Garantia = table.Column<bool>(type: "bit", nullable: false),
+                    TiempoEntrega = table.Column<int>(type: "int", nullable: false),
+                    OfertaId = table.Column<int>(type: "int", nullable: false),
+                    ProductoId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ofertas_det", x => x.Oferta_DetId);
+                    table.ForeignKey(
+                        name: "FK_ofertas_det_ofertas_OfertaId",
+                        column: x => x.OfertaId,
+                        principalTable: "ofertas",
+                        principalColumn: "OfertaId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ofertas_det_productos_ProductoId",
                         column: x => x.ProductoId,
                         principalTable: "productos",
                         principalColumn: "ProductoId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ofertas_proveedores_ProveedorId",
-                        column: x => x.ProveedorId,
-                        principalTable: "proveedores",
-                        principalColumn: "ProveedorId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -125,17 +172,23 @@ namespace ModeloBD.Migrations
                     Estado = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ProveedorId = table.Column<int>(type: "int", nullable: false),
+                    OfertaId = table.Column<int>(type: "int", nullable: false),
                     PeriodoId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_postulaciones", x => x.PostulacionId);
                     table.ForeignKey(
+                        name: "FK_postulaciones_ofertas_OfertaId",
+                        column: x => x.OfertaId,
+                        principalTable: "ofertas",
+                        principalColumn: "OfertaId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_postulaciones_periodos_PeriodoId",
                         column: x => x.PeriodoId,
                         principalTable: "periodos",
-                        principalColumn: "PeriodoId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "PeriodoId");
                     table.ForeignKey(
                         name: "FK_postulaciones_proveedores_ProveedorId",
                         column: x => x.ProveedorId,
@@ -196,8 +249,13 @@ namespace ModeloBD.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_configuracion_PeriodoId",
-                table: "configuracion",
+                name: "IX_clasificaciones_ProductoId",
+                table: "clasificaciones",
+                column: "ProductoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_configuraciones_PeriodoId",
+                table: "configuraciones",
                 column: "PeriodoId");
 
             migrationBuilder.CreateIndex(
@@ -206,14 +264,19 @@ namespace ModeloBD.Migrations
                 column: "PeriodoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ofertas_ProductoId",
-                table: "ofertas",
+                name: "IX_ofertas_det_OfertaId",
+                table: "ofertas_det",
+                column: "OfertaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ofertas_det_ProductoId",
+                table: "ofertas_det",
                 column: "ProductoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ofertas_ProveedorId",
-                table: "ofertas",
-                column: "ProveedorId");
+                name: "IX_postulaciones_OfertaId",
+                table: "postulaciones",
+                column: "OfertaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_postulaciones_PeriodoId",
@@ -237,13 +300,19 @@ namespace ModeloBD.Migrations
                 name: "calificaciones");
 
             migrationBuilder.DropTable(
-                name: "configuracion");
+                name: "clasificaciones");
 
             migrationBuilder.DropTable(
-                name: "ofertas");
+                name: "configuraciones");
+
+            migrationBuilder.DropTable(
+                name: "ofertas_det");
 
             migrationBuilder.DropTable(
                 name: "postulaciones_det");
+
+            migrationBuilder.DropTable(
+                name: "marcas");
 
             migrationBuilder.DropTable(
                 name: "productos");
@@ -252,10 +321,13 @@ namespace ModeloBD.Migrations
                 name: "postulaciones");
 
             migrationBuilder.DropTable(
-                name: "periodos");
+                name: "ofertas");
 
             migrationBuilder.DropTable(
                 name: "proveedores");
+
+            migrationBuilder.DropTable(
+                name: "periodos");
         }
     }
 }

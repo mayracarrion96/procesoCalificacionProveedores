@@ -19,6 +19,10 @@ namespace Modelo.Entidades
         public Proveedor Proveedor { get; set; }
         public int ProveedorId { get; set; }
 
+        //Propiedades de la relacion con oferta
+        public Oferta Oferta { get; set; }
+        public int OfertaId { get; set; }
+
         //Propiedades de la relacion con periodo
         public Periodo Periodo { get; set; }
         public int PeriodoId { get; set; }

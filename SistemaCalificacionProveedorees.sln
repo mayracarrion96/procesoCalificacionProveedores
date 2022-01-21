@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.32002.261
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modelo", "Modelo\Modelo.csproj", "{97486AE4-D6EA-4195-AEE1-A751CBEF0D1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{B0AF6612-26A8-4CB5-9017-05815C2BB83F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{B0AF6612-26A8-4CB5-9017-05815C2BB83F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModeloBD", "ModeloBD\ModeloBD.csproj", "{01F69436-7FD0-4F4C-8811-3BB0B7298055}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModeloBD", "ModeloBD\ModeloBD.csproj", "{01F69436-7FD0-4F4C-8811-3BB0B7298055}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

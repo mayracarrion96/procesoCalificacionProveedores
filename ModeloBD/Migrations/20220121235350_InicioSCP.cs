@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ModeloBD.Migrations
 {
-    public partial class IniSCP : Migration
+    public partial class InicioSCP : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -70,6 +70,8 @@ namespace ModeloBD.Migrations
                 name: "configuraciones",
                 columns: table => new
                 {
+                    ConfiguracionId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     NotaMinima = table.Column<float>(type: "real", nullable: false),
                     PesoNota1 = table.Column<float>(type: "real", nullable: false),
                     PesoNota2 = table.Column<float>(type: "real", nullable: false),
@@ -78,13 +80,14 @@ namespace ModeloBD.Migrations
                     PesoNota5 = table.Column<float>(type: "real", nullable: false),
                     PesoNota6 = table.Column<float>(type: "real", nullable: false),
                     PesoNota7 = table.Column<float>(type: "real", nullable: false),
-                    PeriodoId = table.Column<int>(type: "int", nullable: false)
+                    PeriodoVigenteId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("PK_configuraciones", x => x.ConfiguracionId);
                     table.ForeignKey(
-                        name: "FK_configuraciones_periodos_PeriodoId",
-                        column: x => x.PeriodoId,
+                        name: "FK_configuraciones_periodos_PeriodoVigenteId",
+                        column: x => x.PeriodoVigenteId,
                         principalTable: "periodos",
                         principalColumn: "PeriodoId",
                         onDelete: ReferentialAction.Cascade);
@@ -254,9 +257,10 @@ namespace ModeloBD.Migrations
                 column: "ProductoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_configuraciones_PeriodoId",
+                name: "IX_configuraciones_PeriodoVigenteId",
                 table: "configuraciones",
-                column: "PeriodoId");
+                column: "PeriodoVigenteId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ofertas_PeriodoId",

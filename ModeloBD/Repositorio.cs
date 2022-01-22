@@ -37,10 +37,7 @@ namespace ModeloBD
         protected override void OnModelCreating (ModelBuilder model)
         {
 
-            //Configuracion
-            //La clase configuracion no tiene clave primaria
-            model.Entity<Configuracion>()
-                .HasNoKey();
+            
 
             //Relacion de de uno a muchos
             //un proveedor va a tener varias postulaciones
@@ -92,6 +89,19 @@ namespace ModeloBD
                 .HasOne(postulacion_det => postulacion_det.Calificacion)
                 .WithOne(calificacion => calificacion.Postulacion_Det)
                 .HasForeignKey<Calificacion>(calificacion => calificacion.Postulacion_DetId);
+
+            
+            //Configuracion
+            //La clase configuracion no tiene clave primaria
+            //model.Entity<Configuracion>()
+              //  .HasNoKey();
+
+            //un periodo y una solo configuracion
+            model.Entity<Configuracion>()
+                .HasOne(configuracion => configuracion.PeriodoVigente)
+                .WithOne()
+                .HasForeignKey<Configuracion>(configuracion => configuracion.PeriodoVigenteId);
+
 
             //Relacion de muchos a muchos
             model.Entity<Clasificacion>()

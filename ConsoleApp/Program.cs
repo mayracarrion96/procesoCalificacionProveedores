@@ -381,7 +381,7 @@ namespace ConsoleApp
                 Periodo = Periodo_2021
 
             };
-            /*
+            
             Postulacion PostOnerom_2021 = new Postulacion()
             {
                 Estado = "Pendiente",
@@ -485,7 +485,7 @@ namespace ConsoleApp
                 PostBalmer_2021, PostBudak_2021, PostCompupaper_2021, PostDilipa_2021,
                 PostDismap_2021, PostEcolors_2021, PostEcuampaques_2021, PostJYE_2021,  PostLeo_2021,
                 PostOfi_2021, PostOnerom_2021, PostSantos_2021, PostSiglo_2021, PostSYS_2021, PostVicents_2021};
-            */
+            
 
             //Calificacion
 
@@ -507,11 +507,7 @@ namespace ConsoleApp
                 Calificacion = CalifDismap
 
             };
-
-
-
-
-
+            
             //Configuracion
             /*
             Configuracion configuracion = new Configuracion()
@@ -523,30 +519,27 @@ namespace ConsoleApp
                 PesoNota4 = 0.20f,
                 PesoNota5 = 0.15f,
                 PesoNota6 = 0.15f,
-                PesoNota7 = 0.10f,
-                PeriodoVigente=Periodo_2022,
+                PesoNota7 = 0.10f
+                //PeriodoVigente=Periodo_2022,
             };
-                        
-            //Actualizo configuracion
-            configuracion.PeriodoVigente = Periodo_2022;
-           */
-
-
+            */
+            
             Repositorio db = new Repositorio();
+            db.proveedores.AddRange(listaproveedores);
+            db.marcas.AddRange(listamarcas);
+            db.periodos.AddRange(listaperiodos);
+            db.productos.AddRange(listaproductos);
+            db.clasificaciones.Add(Clasif1);
+            db.ofertas.Add(OfertaDismap);
+            db.ofertas_det.Add(OfertaDetDismap);
+            db.postulaciones.AddRange(PostDismap_2021);
+            db.postulaciones_det.Add(PostDetDismap_2021);
+            db.calificaciones.Add(CalifDismap);
 
-            db.AddRange(listaproveedores);
-            db.AddRange(listamarcas);
-            db.AddRange(listaperiodos);
-            db.AddRange(listaproductos);
-            db.Add(Clasif1);
-            db.Add(OfertaDismap);
-            db.Add(OfertaDetDismap);
-            db.AddRange(PostDismap_2021);
-            db.Add(PostDetDismap_2021);
-            db.Add(CalifDismap);
-            //db.Add(configuracion);
+            //db.configuraciones.Add(configuracion);
 
             db.SaveChanges();
+
 
         }
     }

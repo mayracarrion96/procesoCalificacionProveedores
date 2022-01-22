@@ -75,10 +75,15 @@ namespace ModeloBD.Migrations
 
             modelBuilder.Entity("Modelo.Entidades.Configuracion", b =>
                 {
+                    b.Property<int>("ConfiguracionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<float>("NotaMinima")
                         .HasColumnType("real");
 
-                    b.Property<int>("PeriodoId")
+                    b.Property<int>("PeriodoVigenteId")
                         .HasColumnType("int");
 
                     b.Property<float>("PesoNota1")
@@ -102,7 +107,10 @@ namespace ModeloBD.Migrations
                     b.Property<float>("PesoNota7")
                         .HasColumnType("real");
 
-                    b.HasIndex("PeriodoId");
+                    b.HasKey("ConfiguracionId");
+
+                    b.HasIndex("PeriodoVigenteId")
+                        .IsUnique();
 
                     b.ToTable("configuraciones");
                 });
@@ -328,8 +336,8 @@ namespace ModeloBD.Migrations
             modelBuilder.Entity("Modelo.Entidades.Configuracion", b =>
                 {
                     b.HasOne("Modelo.Entidades.Periodo", "PeriodoVigente")
-                        .WithMany()
-                        .HasForeignKey("PeriodoId")
+                        .WithOne()
+                        .HasForeignKey("Modelo.Entidades.Configuracion", "PeriodoVigenteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

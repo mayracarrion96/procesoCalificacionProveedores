@@ -1,0 +1,74 @@
+﻿@using Modelo.Entidades;
+@model IEnumerable<Periodo>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>PERIODOD</h1>
+<p>Se presenta a continuación la lista de las periodos registradas en el sistema SCP</p>
+
+<div class="container">
+    @if (TempData["mensaje"] != null)
+    {
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            @TempData["mensaje"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                <span aria-hidden="true">
+                    &times;
+                </span>
+            </button>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Lista de periodos</h3>
+        </div>
+        <div class="col-sm-6">
+            <a class="btn btn-success d-block"
+               asp-controller="Periodo" asp-action="Create">
+                Crear nueva periodo
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Estado</td>
+                    <td>Fecha Inicio</td>
+                    <td>Fecha Fin</td>
+                    <td>Acciones</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Periodo periodo in Model)
+                {
+                    <tr>
+                        <td>@periodo.PeriodoId</td>
+                        <td>@periodo.Estado</td>
+                        <td>@periodo.FechaInicio</td>
+                        <td>@periodo.FechaFin</td>
+                        <td>
+                            <a class="btn btn-warning"
+                               asp-controller="Periodo" asp-action="Edit" asp-route-id="@periodo.PeriodoId">
+                                Editar
+                            </a>
+                            <a class="btn btn-danger"
+                               asp-controller="Periodo" asp-action="Delete" asp-route-id="@periodo.PeriodoId">
+                                Borrar
+                            </a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+

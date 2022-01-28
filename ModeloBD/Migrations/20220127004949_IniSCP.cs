@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ModeloBD.Migrations
 {
-    public partial class InicioSCP : Migration
+    public partial class IniSCP : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

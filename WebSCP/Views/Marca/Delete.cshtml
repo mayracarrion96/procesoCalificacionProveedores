@@ -1,0 +1,36 @@
+﻿@using Modelo.Entidades
+@model Marca
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>ELIMINAR MARCA</h1>
+<p>Formulario para borrar una marca en el sistema SCP</p>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Seguro que desea eliminar la marca: @Model.MarcaId</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-10">
+            <form method="post" asp-action="Delete">
+                <input type="hidden" asp-for="MarcaId" />
+
+                <div class="form-group">
+                    <label class="control-label">Nombre</label>
+                    <input class="form-control" asp-for="Nombre" disabled/>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Eliminar la marca" />
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+

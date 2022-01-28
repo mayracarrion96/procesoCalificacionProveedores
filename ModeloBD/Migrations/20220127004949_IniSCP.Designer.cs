@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ModeloBD;
 
 namespace ModeloBD.Migrations
 {
     [DbContext(typeof(Repositorio))]
-    partial class RepositorioModelSnapshot : ModelSnapshot
+    [Migration("20220127004949_IniSCP")]
+    partial class IniSCP
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -221,7 +223,7 @@ namespace ModeloBD.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("OfertaId")
+                    b.Property<int>("OfertaId")
                         .HasColumnType("int");
 
                     b.Property<int>("PeriodoId")
@@ -378,7 +380,9 @@ namespace ModeloBD.Migrations
                 {
                     b.HasOne("Modelo.Entidades.Oferta", "Oferta")
                         .WithMany("Postulacion")
-                        .HasForeignKey("OfertaId");
+                        .HasForeignKey("OfertaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Modelo.Entidades.Periodo", "Periodo")
                         .WithMany("Postulacion")

@@ -1,0 +1,45 @@
+﻿@using Modelo.Entidades
+@model Periodo
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>EDICION DE PERIODOS</h1>
+<p>Formulario para editar el periodo en el sistema SCP</p>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Usted esta actualizando el periodo: @Model.PeriodoId</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-10">
+            <form method="post" asp-action="Edit">
+
+                <input type="hidden" asp-for="PeriodoId" />
+
+                <div class="form-group">
+                    <label class="control-label">Estado</label>
+                    <input class="form-control" asp-for="Estado" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Fecha inicio</label>
+                    <input class="form-control" asp-for="FechaInicio" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Fecha fin</label>
+                    <input class="form-control" asp-for="FechaFin" />
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Actualizar el periodo" />
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+

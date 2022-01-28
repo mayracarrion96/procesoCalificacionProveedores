@@ -10,8 +10,8 @@ using ModeloBD;
 namespace ModeloBD.Migrations
 {
     [DbContext(typeof(Repositorio))]
-    [Migration("20220121235350_InicioSCP")]
-    partial class InicioSCP
+    [Migration("20220127231011_iNI2")]
+    partial class iNI2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -223,7 +223,7 @@ namespace ModeloBD.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("OfertaId")
+                    b.Property<int?>("OfertaId")
                         .HasColumnType("int");
 
                     b.Property<int>("PeriodoId")
@@ -380,9 +380,7 @@ namespace ModeloBD.Migrations
                 {
                     b.HasOne("Modelo.Entidades.Oferta", "Oferta")
                         .WithMany("Postulacion")
-                        .HasForeignKey("OfertaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OfertaId");
 
                     b.HasOne("Modelo.Entidades.Periodo", "Periodo")
                         .WithMany("Postulacion")

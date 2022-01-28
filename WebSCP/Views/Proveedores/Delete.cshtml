@@ -1,0 +1,55 @@
+﻿@using Modelo.Entidades
+@model Proveedor
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>ELIMINAR PROVEEDOR</h1>
+<p>Formulario para borrar un proveedor en el sistema SCP</p>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Seguro que desea eliminar el proveedor: @Model.Nombre</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-10">
+            <form method="post" asp-action="Delete">
+                <div class="form-group">
+
+                    <input type="hidden" asp-for="ProveedorId" />
+
+                    <div class="form-group">
+                        <label class="control-label">Nombre</label>
+                        <input class="form-control" asp-for="Nombre" disabled/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">RUC</label>
+                        <input class="form-control" asp-for="Ruc" disabled/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Direccion</label>
+                        <input class="form-control" asp-for="Direccion" disabled/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Telefono</label>
+                        <input class="form-control" asp-for="Telefono" disabled/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Email</label>
+                        <input class="form-control" asp-for="Correo" disabled />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary" value="Eliminar el proveedor" />
+                    </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+

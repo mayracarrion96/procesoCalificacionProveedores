@@ -1,0 +1,80 @@
+﻿@using Modelo.Entidades;
+@model IEnumerable<Calificacion>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>CALIFICACIONES</h1>
+<p>Se presenta a continuación la lista de las calificaciones registradas en el sistema SCP</p>
+
+<div class="container">
+    @if (TempData["mensaje"] != null)
+    {
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            @TempData["mensaje"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                <span aria-hidden="true">
+                    &times;
+                </span>
+            </button>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Lista de calificaciones</h3>
+        </div>
+        <div class="col-sm-6">
+            <a class="btn btn-success d-block"
+               asp-controller="Calificacion" asp-action="Create">
+                Crear nueva calificacion
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Nota 1</td>
+                    <td>Nota 2</td>
+                    <td>Nota 3</td>
+                    <td>Nota 4</td>
+                    <td>Nota 5</td>
+                    <td>Nota 6</td>
+                    <td>Nota 7</td>
+                    <td>Acciones</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Calificacion calificacion in Model)
+                {
+                    <tr>
+                        <td>@calificacion.CalificacionId</td>
+                        <td>@calificacion.Nota1</td>
+                        <td>@calificacion.Nota2</td>
+                        <td>@calificacion.Nota3</td>
+                        <td>@calificacion.Nota4</td>
+                        <td>@calificacion.Nota5</td>
+                        <td>@calificacion.Nota6</td>
+                        <td>@calificacion.Nota7</td>
+                        <td>
+                            <a class="btn btn-warning"
+                               asp-controller="Calificacion" asp-action="Edit" asp-route-id="@calificacion.CalificacionId">
+                                Editar
+                            </a>
+                            <a class="btn btn-danger"
+                               asp-controller="Calificacion" asp-action="Delete" asp-route-id="@calificacion.CalificacionId">
+                                Borrar
+                            </a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+</div>

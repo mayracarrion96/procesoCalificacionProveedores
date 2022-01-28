@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "ConsoleApp\Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModeloBD", "ModeloBD\ModeloBD.csproj", "{01F69436-7FD0-4F4C-8811-3BB0B7298055}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CargaDatos", "CargaDatos\CargaDatos.csproj", "{E818C8AB-08A0-4132-8B0C-54F34603123A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebSCP", "WebSCP\WebSCP.csproj", "{BD7E6F93-976B-40E7-9E0C-8E60A6745E45}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{01F69436-7FD0-4F4C-8811-3BB0B7298055}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01F69436-7FD0-4F4C-8811-3BB0B7298055}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01F69436-7FD0-4F4C-8811-3BB0B7298055}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E818C8AB-08A0-4132-8B0C-54F34603123A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E818C8AB-08A0-4132-8B0C-54F34603123A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E818C8AB-08A0-4132-8B0C-54F34603123A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E818C8AB-08A0-4132-8B0C-54F34603123A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD7E6F93-976B-40E7-9E0C-8E60A6745E45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD7E6F93-976B-40E7-9E0C-8E60A6745E45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD7E6F93-976B-40E7-9E0C-8E60A6745E45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD7E6F93-976B-40E7-9E0C-8E60A6745E45}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

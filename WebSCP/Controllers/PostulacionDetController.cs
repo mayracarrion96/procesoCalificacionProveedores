@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Modelo.Entidades;
 using ModeloBD;
@@ -9,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace WebSCP.Controllers
 {
-    public class postulacionDetDetController : Controller
+    public class PostulacionDetController : Controller
     {
         private readonly Repositorio db;
-        public postulacionDetDetController(Repositorio db)
+        public PostulacionDetController(Repositorio db)
         {
             this.db = db;
         }
@@ -30,6 +31,27 @@ namespace WebSCP.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            //Listas
+            var listaPostulaciones = db.postulaciones
+                .Select(postulacion => new
+                {
+                    PostulacionId = postulacion.PostulacionId,
+                    Nombre = postulacion.Nombre
+                }).ToList();
+
+            var listaCalificaciones = db.calificaciones
+                .Select(calificacion => new
+                {
+                    CalificacionId=calificacion.CalificacionId,
+                    Nombre= calificacion.Nombre
+                }).ToList();
+
+            //Prepara las listas
+            var selectListaPostulaciones = new SelectList(listaPostulaciones, "PostulacionId", "Nombre");
+            var selectListaCalificaciones = new SelectList(listaCalificaciones, "CalificacionId", "Nombre");
+            
+            ViewBag.selectListaPostulaciones = selectListaPostulaciones;
+            ViewBag.selectListaCalificaciones = selectListaCalificaciones;
             return View();
         }
 

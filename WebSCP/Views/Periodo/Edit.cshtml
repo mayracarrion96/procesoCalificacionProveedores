@@ -22,9 +22,12 @@
                 <input type="hidden" asp-for="PeriodoId" />
 
                 <div class="form-group">
-                    <label class="control-label">Estado</label>
-                    <input class="form-control" asp-for="Estado" />
+                    <label class="control-label">Nombre</label>
+                    <input class="form-control" asp-for="Nombre" />
                 </div>
+                <select class="form-control"
+                        asp-for="Estado" asp-items="Html.GetEnumSelectList<PeriodoEstado>()">
+                </select>
                 <div class="form-group">
                     <label class="control-label">Fecha inicio</label>
                     <input class="form-control" asp-for="FechaInicio" />

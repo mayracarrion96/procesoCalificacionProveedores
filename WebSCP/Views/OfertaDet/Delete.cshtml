@@ -1,0 +1,58 @@
+﻿@using Modelo.Entidades
+@model Oferta_Det
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>ELIMINAR DETALLE OFERTA</h1>
+<p>Formulario para borrar un detalle de oferta en el sistema SCP</p>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Seguro que desea eliminar el detalle de la oferta: @Model.Oferta_DetId</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-10">
+            <form method="post" asp-action="Delete">
+                <input type="hidden" asp-for="Oferta_DetId" />
+
+                <div class="form-group">
+                    <label class="control-label">Oferta #</label>
+                    <input class="form-control" asp-for="OfertaId" disabled/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Producto</label>
+                    <input class="form-control" asp-for="ProductoId" disabled />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Precio</label>
+                    <input class="form-control" asp-for="Precio" disabled/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Lote Minimo</label>
+                    <input class="form-control" asp-for="LoteMinimo" disabled/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Descuento</label>
+                    <input class="form-control" asp-for="Descuento" disabled/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Garantia</label>
+                    <input class="form-control" asp-for="Garantia" disabled/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Tiempo de Entrega</label>
+                    <input class="form-control" asp-for="TiempoEntrega" disabled/>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Eliminar detalle oferta" />
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

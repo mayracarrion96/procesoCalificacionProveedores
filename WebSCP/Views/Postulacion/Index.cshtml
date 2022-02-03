@@ -9,6 +9,7 @@
 <p>Se presenta a continuación la lista de las postulaciones registradas en el sistema SCP</p>
 
 <div class="container">
+
     @if (TempData["mensaje"] != null)
     {
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -24,53 +25,49 @@
         <div class="col-sm-6">
             <h3>Lista de postulaciones</h3>
         </div>
-        <div class="col-sm-6">
-            <a class="btn btn-success d-block"
-               asp-controller="Postulacion" asp-action="Create">
-                Crear nueva postulacion
-            </a>
-        </div>
+        
     </div>
 
     <div class="row">
-        <table class="table table-bordered table-striped">
+        @if (Model.Count() > 0)
+        {
+
+       <table class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <td>Id</td>
-                    <td>Estado</td>
                     <td>Fecha</td>
                     <td>Proveedor</td>
-                    <td>Oferta</td>
+                    <td>Oferta #</td>
                     <td>Periodo</td>
+                    <td>Estado</td>
                     <td>Acciones</td>
                 </tr>
             </thead>
             <tbody>
                 @foreach (Postulacion postulacion in Model)
                 {
-                    <tr>
-                        <td>@postulacion.PostulacionId</td>
-                        <td>@postulacion.Estado</td>
-                        <td>@postulacion.Fecha</td>
-                        <td>@postulacion.Proveedor</td>
-                        <td>@postulacion.Oferta</td>
-                        <td>@postulacion.Periodo</td>
-                        <td>
-                            <a class="btn btn-warning"
-                               asp-controller="Postulacion" asp-action="Edit" asp-route-id="@postulacion.PostulacionId">
-                                Editar
-                            </a>
-                            <a class="btn btn-danger"
-                               asp-controller="Postulacion" asp-action="Delete" asp-route-id="@postulacion.PostulacionId">
-                                Borrar
-                            </a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>@postulacion.PostulacionId</td>
+                    <td>@postulacion.Fecha.ToShortDateString()</td>
+                    <td>@postulacion.Proveedor.Nombre</td>
+                    <td>@postulacion.Oferta.OfertaId</td>
+                    <td>@postulacion.Periodo.Nombre</td>
+                    <td>@postulacion.Estado</td>
+                    <td>
+
+                        <a class="btn btn-warning"
+                           asp-controller="Postulacion" asp-action="Validar" asp-route-id="@postulacion.PostulacionId">
+                            Ver
+                        </a>
+                        
+                    </td>
+                </tr>
                 }
 
             </tbody>
         </table>
-
+        }
     </div>
 </div>
 

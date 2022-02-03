@@ -9,6 +9,7 @@ namespace Modelo.Entidades
     public class Oferta
     {
         public int OfertaId { get; set; }
+        public string Nombre { get; set; }
         public int ScoreBuro { get; set; }
 
         //Detalle de la postulacion

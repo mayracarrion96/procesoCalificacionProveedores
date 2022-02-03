@@ -1,0 +1,105 @@
+﻿@using Modelo.Entidades
+@model Postulacion
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>POSTULACION</h1>
+<p>Formulario para validar la postulacion en el sistema SCP</p>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            
+            <form method="post" asp-action="Validar">
+
+                <div class="form-group">
+                    <label class="control-label">Id</label>
+                    <input class="form-control" asp-for="PostulacionId" disabled/>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Fecha</label>
+                    <input class="form-control" asp-for="Fecha" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Proveedor</label>
+                    <select class="form-control"
+                            asp-for="ProveedorId"
+                            asp-items="@ViewBag.selectListProveedores">
+                        <option value="">--Selecciona un proveedor--</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Oferta</label>
+                    <select class="form-control"
+                            asp-for="OfertaId"
+                            asp-items="@ViewBag.selectListOfertas">
+                        <option value="">--Selecciona una oferta--</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Periodo</label>
+                    <select class="form-control"
+                            asp-for="PeriodoId"
+                            asp-items="@ViewBag.selectListPeriodo">
+                        <option value="">--Selecciona un periodo--</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Estado</label>
+                    <select clasee="form-control"
+                            asp-for="Estado" asp-items="Html.GetEnumSelectList<PostulacionEstado>()">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Validar" />
+                </div>
+            </form>
+        </div>
+    
+        <div class="col-sm-9">
+            
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            
+                            <td>Nota 1</td>
+                            <td>Nota 2</td>
+                            <td>Nota 3</td>
+                            <td>Nota 4</td>
+                            <td>Nota 5</td>
+                            <td>Nota 6</td>
+                            <td>Nota 7</td>
+                            <td>Nota Final</td>
+                            <td>Estado</td>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var postulacion in Model.Postulacion_Detalle)
+                        {
+                        <tr>
+                            
+                            <td>@postulacion.Calificacion.Nota1</td>
+                            <td>@postulacion.Calificacion.Nota2</td>
+                            <td>@postulacion.Calificacion.Nota3</td>
+                            <td>@postulacion.Calificacion.Nota4</td>
+                            <td>@postulacion.Calificacion.Nota5</td>
+                            <td>@postulacion.Calificacion.Nota6</td>
+                            <td>@postulacion.Calificacion.Nota7</td>
+                            <td>@ViewBag.CalculoCalificaciones.NotaFinal(postulacion.Calificacion)</td>
+                            <td>@ViewBag.CalculoCalificaciones.Aprobado(postulacion.Calificacion)</td>
+                            
+                        </tr>
+                        }
+
+                    </tbody>
+                </table>
+            
+        </div>
+
+    </div>
+</div>
+

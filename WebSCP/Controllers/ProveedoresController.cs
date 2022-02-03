@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Modelo.Entidades;
 using ModeloBD;
 using System;
@@ -19,7 +21,8 @@ namespace WebSCP.Controllers
         //Recupera la lista de proveedores y envia hacia la vista
         public IActionResult Index()
         {
-            IEnumerable<Proveedor> listaProveedores = db.proveedores;
+            IEnumerable<Proveedor> listaProveedores = db.proveedores
+                .Include(proveedor => proveedor.Postulacion);
 
             return View(listaProveedores);
         }
@@ -29,6 +32,19 @@ namespace WebSCP.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            //Lista de postulacion
+            var listaPostulaciones = db.postulaciones
+                .Select(postulacion => new
+                {
+                    PostulacionId = postulacion.PostulacionId,
+                    Nombre = postulacion.Nombre
+                }).ToList();
+
+            //Prepara las listas
+            var selectListaPostulaciones = new SelectList(listaPostulaciones, "PostulacionId", "Nombre");
+
+            ViewBag.selectListaPostulaciones = selectListaPostulaciones;
+
             return View();
         }
 

@@ -1,0 +1,42 @@
+﻿@using Modelo.Entidades
+@model Postulacion_Det
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>ELIMINAR EL DETALLE DE POSTULACION</h1>
+<p>Formulario para borrar un detalle de postulacion en el sistema SCP</p>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Seguro que desea eliminar detalle de postulacion: @Model.Postulacion_DetId</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-10">
+            <form method="post" asp-action="Delete">
+
+                <input type="hidden" asp-for="Postulacion_DetId" />
+                
+                <div class="form-group">
+                    <label class="control-label">Postulacion #</label>
+                    <input class="form-control" asp-for="PostulacionId" disabled/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Calificacion</label>
+                    <input class="form-control" asp-for="Calificacion.CalificacionId" disabled/>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Eliminar detalle de postulacion" />
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+

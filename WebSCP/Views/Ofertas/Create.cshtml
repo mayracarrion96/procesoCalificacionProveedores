@@ -20,12 +20,20 @@
         <div class="col-sm-10">
             <form method="post" asp-action="Create">
                 <div class="form-group">
+                    <label class="control-label">Nombre</label>
+                    <input class="form-control" asp-for="Nombre" />
+                </div>
+                <div class="form-group">
                     <label class="control-label">Score Buro</label>
                     <input class="form-control" asp-for="ScoreBuro" />
                 </div>
                 <div class="form-group">
-                    <label class="control-label">Periodo-Estado</label>
-                    <input class="form-control" asp-for="PeriodoId" />
+                    <label class="control-label">Periodo</label>
+                    <select class="form-control"
+                            asp-for="PeriodoId"
+                            asp-items="@ViewBag.selectListPeriodos">
+                        <option value="">--Selecciona un período--</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <input type="submit" class="btn btn-primary" value="Crear la oferta" />

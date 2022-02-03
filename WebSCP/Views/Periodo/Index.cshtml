@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>PERIODOD</h1>
+<h1>PERIODO</h1>
 <p>Se presenta a continuación la lista de las periodos registradas en el sistema SCP</p>
 
 <div class="container">
@@ -22,10 +22,10 @@
     }
 
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-8">
             <h3>Lista de periodos</h3>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-4">
             <a class="btn btn-success d-block"
                asp-controller="Periodo" asp-action="Create">
                 Crear nueva periodo
@@ -38,6 +38,7 @@
             <thead>
                 <tr>
                     <td>Id</td>
+                    <td>Nombre</td>
                     <td>Estado</td>
                     <td>Fecha Inicio</td>
                     <td>Fecha Fin</td>
@@ -47,22 +48,23 @@
             <tbody>
                 @foreach (Periodo periodo in Model)
                 {
-                    <tr>
-                        <td>@periodo.PeriodoId</td>
-                        <td>@periodo.Estado</td>
-                        <td>@periodo.FechaInicio</td>
-                        <td>@periodo.FechaFin</td>
-                        <td>
-                            <a class="btn btn-warning"
-                               asp-controller="Periodo" asp-action="Edit" asp-route-id="@periodo.PeriodoId">
-                                Editar
-                            </a>
-                            <a class="btn btn-danger"
-                               asp-controller="Periodo" asp-action="Delete" asp-route-id="@periodo.PeriodoId">
-                                Borrar
-                            </a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>@periodo.PeriodoId</td>
+                    <td>@periodo.Nombre</td>
+                    <td>@periodo.Estado</td>
+                    <td>@periodo.FechaInicio.ToShortDateString()</td>
+                    <td>@periodo.FechaFin.ToShortDateString()</td>
+                    <td>
+                        <a class="btn btn-warning"
+                           asp-controller="Periodo" asp-action="Edit" asp-route-id="@periodo.PeriodoId">
+                            Editar
+                        </a>
+                        <a class="btn btn-danger"
+                           asp-controller="Periodo" asp-action="Delete" asp-route-id="@periodo.PeriodoId">
+                            Borrar
+                        </a>
+                    </td>
+                </tr>
                 }
 
             </tbody>

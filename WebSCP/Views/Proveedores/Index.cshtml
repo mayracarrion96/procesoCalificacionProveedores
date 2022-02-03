@@ -22,10 +22,10 @@
     }
 
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-8">
             <h3>Lista de proveedores</h3>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-4">
             <a class="btn btn-success d-block"
                asp-controller="Proveedores" asp-action="Create">
                 Crear nuevo proveedor
@@ -49,24 +49,24 @@
             <tbody>
                 @foreach (Proveedor proveedor in Model)
                 {
-                    <tr>
-                        <td>@proveedor.ProveedorId</td>
-                        <td>@proveedor.Nombre</td>
-                        <td>@proveedor.Ruc</td>
-                        <td>@proveedor.Direccion</td>
-                        <td>@proveedor.Telefono</td>
-                        <td>@proveedor.Correo</td>
-                        <td>
-                            <a class="btn btn-warning"
-                               asp-controller="Proveedores" asp-action="Edit" asp-route-id="@proveedor.ProveedorId">
-                                Editar
-                            </a>
-                            <a class="btn btn-danger"
-                               asp-controller="Proveedores" asp-action="Delete" asp-route-id="@proveedor.ProveedorId">
-                                Borrar
-                            </a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>@proveedor.ProveedorId</td>
+                    <td>@proveedor.Nombre</td>
+                    <td>@proveedor.Ruc</td>
+                    <td>@proveedor.Direccion</td>
+                    <td>@proveedor.Telefono</td>
+                    <td>@proveedor.Correo</td>
+                    <td>
+                        <a class="btn btn-warning"
+                           asp-controller="Proveedores" asp-action="Edit" asp-route-id="@proveedor.ProveedorId">
+                            Editar
+                        </a>
+                        <a class="btn btn-danger"
+                           asp-controller="Proveedores" asp-action="Delete" asp-route-id="@proveedor.ProveedorId">
+                            Borrar
+                        </a>
+                    </td>
+                </tr>
                 }
 
             </tbody>

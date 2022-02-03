@@ -38,6 +38,7 @@
             <thead>
                 <tr>
                     <td>Id</td>
+                    <td>Detalle de Postulacion</td>
                     <td>Nota 1</td>
                     <td>Nota 2</td>
                     <td>Nota 3</td>
@@ -51,26 +52,29 @@
             <tbody>
                 @foreach (Calificacion calificacion in Model)
                 {
-                    <tr>
-                        <td>@calificacion.CalificacionId</td>
-                        <td>@calificacion.Nota1</td>
-                        <td>@calificacion.Nota2</td>
-                        <td>@calificacion.Nota3</td>
-                        <td>@calificacion.Nota4</td>
-                        <td>@calificacion.Nota5</td>
-                        <td>@calificacion.Nota6</td>
-                        <td>@calificacion.Nota7</td>
-                        <td>
-                            <a class="btn btn-warning"
-                               asp-controller="Calificacion" asp-action="Edit" asp-route-id="@calificacion.CalificacionId">
-                                Editar
-                            </a>
-                            <a class="btn btn-danger"
-                               asp-controller="Calificacion" asp-action="Delete" asp-route-id="@calificacion.CalificacionId">
-                                Borrar
-                            </a>
-                        </td>
-                    </tr>
+                <tr>
+
+                    <td>@calificacion.CalificacionId</td>
+                    <td>@calificacion.Postulacion_Det.Nombre</td>
+                    <td>@calificacion.Nota1</td>
+                    <td>@calificacion.Nota2</td>
+                    <td>@calificacion.Nota3</td>
+                    <td>@calificacion.Nota4</td>
+                    <td>@calificacion.Nota5</td>
+                    <td>@calificacion.Nota6</td>
+                    <td>@calificacion.Nota7</td>
+
+                    <td>
+                        <a class="btn btn-warning"
+                           asp-controller="Calificacion" asp-action="Edit" asp-route-id="@calificacion.CalificacionId">
+                            Editar
+                        </a>
+                        <a class="btn btn-danger"
+                           asp-controller="Calificacion" asp-action="Delete" asp-route-id="@calificacion.CalificacionId">
+                            Borrar
+                        </a>
+                    </td>
+                </tr>
                 }
 
             </tbody>

@@ -9,6 +9,7 @@ namespace Modelo.Entidades
     public class Calificacion
     {
         public int CalificacionId { get; set; }
+        public string Nombre { get; set; }
         public float Nota1 { get; set; }
         public float Nota2 { get; set; }
         public float Nota3 { get; set; }

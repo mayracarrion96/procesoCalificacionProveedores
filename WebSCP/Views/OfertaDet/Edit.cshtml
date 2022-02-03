@@ -1,0 +1,67 @@
+﻿@using Modelo.Entidades
+@model Oferta_Det
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>EDICION DETALLE OFERTA</h1>
+<p>Formulario para editar el detalle de la oferta en el sistema SCP</p>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Usted esta actualizando el detalle de oferta #: @Model.Oferta_DetId</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-10">
+            <form method="post" asp-action="Edit">
+
+                <input type="hidden" asp-for="Oferta_DetId" />
+
+                <div class="form-group">
+                    <label class="control-label">Oferta</label>
+                    <select class="form-control"
+                            asp-for="OfertaId"
+                            asp-items="@ViewBag.selectListOfertas">
+                        <option value="">--Selecciona una oferta--</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Producto</label>
+                    <select class="form-control"
+                            asp-for="ProductoId"
+                            asp-items="@ViewBag.selectListaProductos">
+                        <option value="">--Selecciona un producto--</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Precio</label>
+                    <input class="form-control" asp-for="Precio" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Lote Minimo</label>
+                    <input class="form-control" asp-for="LoteMinimo" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Descuento</label>
+                    <input class="form-control" asp-for="Descuento" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Garantia</label>
+                    <input class="form-control" asp-for="Garantia" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Tiempo de Entrega</label>
+                    <input class="form-control" asp-for="TiempoEntrega" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Actualizar detalle de oferta" />
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

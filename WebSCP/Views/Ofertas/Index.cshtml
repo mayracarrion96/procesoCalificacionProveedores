@@ -39,6 +39,7 @@
             <thead>
                 <tr>
                     <td>Id</td>
+                    <td>Nombre</td>
                     <td>Score Buro</td>
                     <td>Periodo</td>
                     <td>Acciones</td>
@@ -49,8 +50,9 @@
                  {
                 <tr>
                     <td>@oferta.OfertaId</td>
+                    <td>@oferta.Nombre</td>
                     <td>@oferta.ScoreBuro</td>
-                    <td>@oferta.Periodo.PeriodoId</td>
+                    <td>@oferta.Periodo.Nombre</td>
                     <td>
                         <a class="btn btn-warning"
                            asp-controller="Ofertas" asp-action="Edit" asp-route-id="@oferta.OfertaId">

@@ -10,14 +10,25 @@ namespace ModeloBD
 {
     public class Repositorio: DbContext
     {
-        //PARA CUANDO UTILICE NUESTRO PROYECTO WEB, AÑADIMOS UN CONSTRUCTOR
+        public Repositorio()
+        {
+
+
+        }
         
+        //PARA CUANDO UTILICE NUESTRO PROYECTO WEB, AÑADIMOS UN CONSTRUCTOR
         public Repositorio(DbContextOptions<Repositorio> options)
             :base(options)
         {
 
         }
-        
+
+        // Se asegura el borrado y la creación de la base de datos
+        public void PreparaDB()
+        {
+            Database.EnsureDeleted();
+            Database.EnsureCreated();
+        }
 
         //Configuracion de las entidades
         public DbSet<Proveedor> proveedores { get; set; }
@@ -33,12 +44,16 @@ namespace ModeloBD
         public DbSet<Postulacion_Det> postulaciones_det { get; set; }
 
         //Configuracion de la conexion
-        /*
+
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlServer("Server=DESKTOP-975JAJB; Initial Catalog= SCP; trusted_connection=true;");
+            // Si no se ha configurado la conección la configura con SqlServer
+            if (!options.IsConfigured)
+            {
+                options.UseSqlServer("Server=DESKTOP-975JAJB; Initial Catalog= SCP; trusted_connection=true;");
+
+            }
         }
-        */
 
         //Configurar el modelo de objetos
         protected override void OnModelCreating (ModelBuilder model)

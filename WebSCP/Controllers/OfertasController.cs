@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Modelo.Entidades;
 using ModeloBD;
@@ -30,6 +31,40 @@ namespace WebSCP.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            //Listas
+            
+            
+            var listaPeriodos = db.periodos
+                .Select(periodo => new
+                {
+                    PeriodoId = periodo.PeriodoId,
+                    Nombre = periodo.Nombre
+                }).ToList();
+
+
+            var listaPostulaciones = db.postulaciones
+                .Select(postulacion => new
+                {
+                    PostulacionId = postulacion.PostulacionId,
+                    Nombre = postulacion.Nombre
+                }).ToList();
+
+            var listaDetOferta = db.ofertas_det
+                .Select(ofertas_det => new
+                {
+                    Oferta_DetId = ofertas_det.Oferta_DetId,
+                    Nombre = ofertas_det.Nombre
+                }).ToList();
+
+            //Prepara las listas
+            var selectListaPostulaciones = new SelectList(listaPostulaciones, "PostulacionId", "Nombre");
+            var selectListPostulacionesDet = new SelectList(listaDetOferta, "PostulacionDetId", "Nombre");
+            var selectListPeriodos = new SelectList(listaPeriodos, "PeriodoId", "Nombre");
+           
+            ViewBag.selectListaPostulaciones = selectListaPostulaciones;
+            ViewBag.selectListPostulacionesDet = selectListPostulacionesDet;
+            ViewBag.selectListPeriodos = selectListPeriodos;
+
             return View();
         }
 

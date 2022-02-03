@@ -1,0 +1,87 @@
+﻿@using Modelo.Entidades;
+@model IEnumerable<Configuracion>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>CONFIGURACION</h1>
+<p>Se presenta a continuación la configuracion registradas en el sistema SCP</p>
+
+<div class="container">
+    @if (TempData["mensaje"] != null)
+    {
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            @TempData["mensaje"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                <span aria-hidden="true">
+                    &times;
+                </span>
+            </button>
+        </div>
+    }
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Lista de configuracion</h3>
+        </div>
+        <div class="col-sm-6">
+            <a class="btn btn-success d-block"
+               asp-controller="configuracion" asp-action="Create">
+                Crear nueva configuracion
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Nota Minima</td>
+                    <td>Peso Nota 1</td>
+                    <td>Peso Nota 2</td>
+                    <td>Peso Nota 3</td>
+                    <td>Peso Nota 4</td>
+                    <td>Peso Nota 5</td>
+                    <td>Peso Nota 6</td>
+                    <td>Peso Nota 7</td>
+                    <td>Periodo #</td>
+                    <td>Acciones</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Configuracion configuracion in Model)
+                {
+                <tr>
+                    <td>@configuracion.ConfiguracionId</td>
+                    <td>@configuracion.NotaMinima</td>
+                    <td>@configuracion.PesoNota1</td>
+                    <td>@configuracion.PesoNota2</td>
+                    <td>@configuracion.PesoNota3</td>
+                    <td>@configuracion.PesoNota4</td>
+                    <td>@configuracion.PesoNota5</td>
+                    <td>@configuracion.PesoNota6</td>
+                    <td>@configuracion.PesoNota7</td>
+                    <td>@configuracion.PeriodoVigente.PeriodoId</td>
+                    <td>
+                        <a class="btn btn-warning"
+                           asp-controller="configuracion" asp-action="Edit" asp-route-id="@configuracion.ConfiguracionId">
+                            Editar
+                        </a>
+                        <a class="btn btn-danger"
+                           asp-controller="configuracion" asp-action="Delete" asp-route-id="@configuracion.ConfiguracionId">
+                            Borrar
+                        </a>
+                    </td>
+                </tr>
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+
+
+

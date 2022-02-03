@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Modelo.Entidades;
 using ModeloBD;
 using System;
@@ -29,6 +30,18 @@ namespace WebSCP.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            //Lista de postulacion_det
+           var listaClasificaciones = db.clasificaciones
+                .Select(clasificacion => new
+                {
+                    Nombre = clasificacion.Nombre
+                }).ToList();
+
+            //Prepara las listas
+            var selectListClasificaciones = new SelectList(listaClasificaciones, "Nombre");
+
+            
+            ViewBag.selectListClasificaciones = selectListClasificaciones;
             return View();
         }
 

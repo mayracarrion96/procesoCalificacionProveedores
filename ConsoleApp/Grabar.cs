@@ -29,26 +29,28 @@ namespace ConsoleApp
             var listaCalificacion = (List<Calificacion>)listas[ListasTipo.Calificaciones];
             var listaPostulacion = (List<Postulacion>)listas[ListasTipo.Postulaciones];
             var listaPostulacionDet = (List<Postulacion_Det>)listas[ListasTipo.Postulaciones_Det];
-            
+
             //Grabar
-            /*
-            Repositorio db = new Repositorio();
+            using (Repositorio db = RepositorioBuilder.Crear())
+            {
+                // Se asegura que se borre y vuelva a crear la base de datos
+                db.PreparaDB();
 
-            db.configuraciones.AddRange(listaConfiguracion);
-            db.periodos.AddRange(listaPeriodos);
-            db.proveedores.AddRange(listaProveedores);
-            db.marcas.AddRange(listaMarcas);
-            db.productos.AddRange(listaProductos);
-            db.clasificaciones.AddRange(listaClasificacion);
-            db.ofertas.AddRange(listaOferta);
-            db.ofertas_det.AddRange(listaOfertaDet);
-            db.calificaciones.AddRange(listaCalificacion);
-            db.postulaciones.AddRange(listaPostulacion);
-            db.postulaciones_det.AddRange(listaPostulacionDet);
-            
+                db.configuraciones.AddRange(listaConfiguracion);
+                db.periodos.AddRange(listaPeriodos);
+                db.proveedores.AddRange(listaProveedores);
+                db.marcas.AddRange(listaMarcas);
+                db.productos.AddRange(listaProductos);
+                db.clasificaciones.AddRange(listaClasificacion);
+                db.ofertas.AddRange(listaOferta);
+                db.ofertas_det.AddRange(listaOfertaDet);
+                db.calificaciones.AddRange(listaCalificacion);
+                db.postulaciones.AddRange(listaPostulacion);
+                db.postulaciones_det.AddRange(listaPostulacionDet);
 
-            db.SaveChanges();
-            */
+
+                db.SaveChanges();
+            }
         }
 
     }

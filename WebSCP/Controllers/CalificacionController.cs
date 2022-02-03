@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Modelo.Entidades;
 using ModeloBD;
 using System;
@@ -19,7 +21,8 @@ namespace WebSCP.Controllers
         //Recupera la lista de calificaciones y envia hacia la vista
         public IActionResult Index()
         {
-            IEnumerable<Calificacion> listaCalificaciones = db.calificaciones;
+            IEnumerable<Calificacion> listaCalificaciones = db.calificaciones
+                .Include(calificacion=>calificacion.Postulacion_Det);
 
             return View(listaCalificaciones);
         }
@@ -29,6 +32,20 @@ namespace WebSCP.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            //Listas
+           var listaDetPost = db.postulaciones_det
+                .Select(postulacion_det => new
+                {
+                    Postulacion_DetId = postulacion_det.Postulacion_DetId,
+                    Nombre = postulacion_det.Nombre
+                }).ToList();
+
+            //Prepara las listas
+           
+            var selectListPostulacionesDet = new SelectList(listaDetPost, "PostulacionDetId", "Nombre");
+
+           ViewBag.selectListPostulacionDet = selectListPostulacionesDet;
+
             return View();
         }
 

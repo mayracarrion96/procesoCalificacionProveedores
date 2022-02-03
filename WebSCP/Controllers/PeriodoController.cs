@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Modelo.Entidades;
 using ModeloBD;
 using System;
@@ -29,6 +30,26 @@ namespace WebSCP.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            //Lista de postulacion
+            var listaPostulaciones = db.postulaciones
+                .Select(postulacion => new
+                {
+                    PostulacionId = postulacion.PostulacionId,
+                    Nombre = postulacion.Nombre
+                }).ToList();
+            var listaOfertas = db.ofertas
+                .Select(oferta=> new
+                {
+                    OfertaId = oferta.OfertaId,
+                    Nombre = oferta.Nombre
+                }).ToList();
+
+            //Prepara las listas
+            var selectListaPostulaciones = new SelectList(listaPostulaciones, "PostulacionId", "Nombre");
+            var selectListaOfertas = new SelectList(listaOfertas, "OfertaId", "Nombre");
+
+            ViewBag.selectListaPostulaciones = selectListaPostulaciones;
+            ViewBag.selectListaOfertas = selectListaOfertas;
             return View();
         }
 

@@ -21,10 +21,10 @@
         </div>
     }
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-8">
             <h3>Lista de detalles de postulaciones</h3>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-4">
             <a class="btn btn-success d-block"
                asp-controller="PostulacionDet" asp-action="Create">
                 Crear nuevo detalle de postulacion
@@ -47,8 +47,8 @@
                 {
                     <tr>
                         <td>@postulacionDet.Postulacion_DetId</td>
-                        <td>@postulacionDet.Postulacion</td>
-                        <td>@postulacionDet.Calificacion</td>
+                        <td>@postulacionDet.Postulacion.Nombre</td>
+                        <td>@postulacionDet.Calificacion.Nombre</td>
 
                         <td>
                             <a class="btn btn-warning"

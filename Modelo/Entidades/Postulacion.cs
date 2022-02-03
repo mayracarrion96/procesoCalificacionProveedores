@@ -1,15 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Modelo.Entidades
 {
+    public enum PostulacionEstado { Aprobada, Rechazada, Pendiente, Anulado }
     public class Postulacion
     {
         public int PostulacionId { get; set; }
-        public string Estado { get; set; }
+        public string Nombre { get; set; }
+        public PostulacionEstado Estado { get; set; }
+
+        [DataType(DataType.Date)]
         public DateTime Fecha { get; set; }
 
         //Detalle de la postulacion

@@ -9,6 +9,7 @@ namespace Modelo.Entidades
     public class Oferta_Det
     {
         public int Oferta_DetId { get; set; }
+        public string Nombre { get; set; }
         public decimal Precio { get; set; }
         public float LoteMinimo { get; set; }
         public float Descuento { get; set; }

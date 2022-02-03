@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Modelo.Entidades;
 using ModeloBD;
 using System;
@@ -8,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace WebSCP.Controllers
 {
-    public class ofertaDetDetController : Controller
+    public class OfertaDetController : Controller
     {
         private readonly Repositorio db;
-        public ofertaDetDetController(Repositorio db)
+        public OfertaDetController(Repositorio db)
         {
             this.db = db;
         }
@@ -19,9 +21,9 @@ namespace WebSCP.Controllers
         //Recupera la lista de ofertaDets_det y envia hacia la vista
         public IActionResult Index()
         {
-            IEnumerable<Oferta_Det> listaofertaDetsDet = db.ofertas_det;
+            IEnumerable<Oferta_Det> listaofertaDet = db.ofertas_det.Include(oferta_Det=>oferta_Det.Oferta).Include(oferta_Det => oferta_Det.Producto);
 
-            return View(listaofertaDetsDet);
+            return View(listaofertaDet);
         }
 
         //Creacion de una nueva ofertaDet
@@ -29,6 +31,29 @@ namespace WebSCP.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            //Listas
+            var listaOferta = db.ofertas
+                .Select(oferta => new
+                {
+                    OfertaId = oferta.OfertaId,
+                    Nombre = oferta.Nombre
+                }).ToList();
+
+            var listaProductos = db.productos
+                .Select(productos => new
+                {
+                    ProductoId = productos.ProductoId,
+                    Nombre = productos.Nombre
+                }).ToList();
+
+
+            //Prepara las listas
+            var selectListaProductos = new SelectList(listaProductos, "ProductoId", "Nombre");
+            var selectListOfertas = new SelectList(listaOferta, "OfertaId", "Nombre");
+
+            ViewBag.selectListaProductos = selectListaProductos;
+            ViewBag.selectListOfertas = selectListOfertas;
+
             return View();
         }
 

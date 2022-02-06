@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CargaDatos\CargaDatos.csproj" />
     <ProjectReference Include="..\ModeloBD\ModeloBD.csproj" />
+    <ProjectReference Include="..\Procesos\Procesos.csproj" />
   </ItemGroup>
 
 </Project>

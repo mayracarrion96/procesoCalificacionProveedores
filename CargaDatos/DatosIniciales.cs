@@ -587,13 +587,13 @@ namespace CargaDatos
             #region
             Oferta OfertaDismap2 = new Oferta()
             {
-                Nombre= "Dismap 2022",
+                Nombre= "Dismap 2020",
                 ScoreBuro = 880,
                 Periodo = Periodo_2020,
             };
             Oferta OfertaDismap3 = new Oferta()
             {
-                Nombre = "Dismap 2022",
+                Nombre = "Dismap 2021",
                 ScoreBuro = 887,
                 Periodo = Periodo_2021,
             };
@@ -605,7 +605,7 @@ namespace CargaDatos
             };
             Oferta OfertaOnerom1 = new Oferta()
             {
-                Nombre = "Onerom 20219",
+                Nombre = "Onerom 2019",
                 ScoreBuro = 376,
                 Periodo = Periodo_2019,
             };

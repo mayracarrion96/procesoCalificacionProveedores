@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CargaDatos", "CargaDatos\Ca
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebSCP", "WebSCP\WebSCP.csproj", "{BD7E6F93-976B-40E7-9E0C-8E60A6745E45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Procesos", "Procesos\Procesos.csproj", "{814AB479-8A58-4373-B393-B0941F64D67F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Procesos", "Procesos\Procesos.csproj", "{3D8FE29D-7DB9-4CF7-89F5-C9A86E9A926E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{BD7E6F93-976B-40E7-9E0C-8E60A6745E45}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD7E6F93-976B-40E7-9E0C-8E60A6745E45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD7E6F93-976B-40E7-9E0C-8E60A6745E45}.Release|Any CPU.Build.0 = Release|Any CPU
-		{814AB479-8A58-4373-B393-B0941F64D67F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{814AB479-8A58-4373-B393-B0941F64D67F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{814AB479-8A58-4373-B393-B0941F64D67F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{814AB479-8A58-4373-B393-B0941F64D67F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D8FE29D-7DB9-4CF7-89F5-C9A86E9A926E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D8FE29D-7DB9-4CF7-89F5-C9A86E9A926E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D8FE29D-7DB9-4CF7-89F5-C9A86E9A926E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D8FE29D-7DB9-4CF7-89F5-C9A86E9A926E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

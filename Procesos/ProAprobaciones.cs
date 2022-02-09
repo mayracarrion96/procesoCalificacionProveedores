@@ -32,6 +32,7 @@ namespace Procesos
 
             CalculoCalificaciones calc = new CalculoCalificaciones(configuracion);
 
+
             foreach (var post in tmpProveedor.Postulacion)
             {
                 foreach (var det in post.Postulacion_Detalle)

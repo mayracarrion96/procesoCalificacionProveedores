@@ -60,7 +60,7 @@ namespace ConsoleApp
             }
 
             */
-            
+            /*
             using (var db = RepositorioBuilder.Crear())
             {
                 
@@ -88,25 +88,28 @@ namespace ConsoleApp
                 }
 
             }
+            */
             
-            /*
+
             using (var db = RepositorioBuilder.Crear())
             {
-                ProValidacion valm = new ProValidacion(db);
+                var tmpPostulacion = db.postulaciones.Single(post => post.PostulacionId == 2);
+                var tmpProveedor = db.proveedores.Single(prov => prov.ProveedorId == 13);
 
-                var tmpPostulacion = db.postulaciones
-                    .Single(pos => pos.PostulacionId == 10);
+                ProValidacion proValidacion = new ProValidacion(db);
 
-                valm.Validacion(tmpPostulacion);
+                if (proValidacion.Validacion(tmpProveedor, tmpPostulacion))
+                {
+                    Console.WriteLine("El provedor " + tmpPostulacion.Nombre + " aprobó ");
 
-                var ValMatr = valm.Validacion(tmpPostulacion);
+                }
+                else
+                {
+                    Console.WriteLine("El proveedor " + tmpPostulacion.Nombre + " no aprobó ");
 
-                Console.WriteLine("La postulacion para " + tmpPostulacion.Proveedor.Nombre + (ValMatr ? " ESTA VALIDADA" : " NO ESTA VALIDADA"));
-                ;
+                }
+
             }
-
-            */
-
 
 
         }

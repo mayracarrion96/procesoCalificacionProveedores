@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Modelo.Entidades;
 using Modelo.Operaciones;
 using ModeloBD;
+using Procesos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -116,42 +117,37 @@ namespace WebSCP.Controllers
             return RedirectToAction("Index");
         }
 
-        //Edicion de una postulacion
-        //Enviar a un formulario con los datos de la postulacion seleccionada
-        [HttpGet]
-        public IActionResult Edit(int id)
-        {
-            Postulacion postulacion = db.postulaciones.Find(id);
-            return View(postulacion);
-        }
+           
 
-        //Actualizar una postulacion
+        //Metodo para validar
         [HttpPost]
-        public IActionResult Edit(Postulacion postulacion)
+        public IActionResult Validar(Postulacion postulacion)
         {
+            ProAprobaciones pro = new ProAprobaciones(db);
+            var tmpPostulacion = db.postulaciones.Find(postulacion.PostulacionId);
+            var tmpProveedor = db.proveedores.Find(postulacion.ProveedorId);
+
+            if (pro.Califico(tmpProveedor, tmpPostulacion))
+            {
+                postulacion.Estado = PostulacionEstado.Aprobada;
+                postulacion.Fecha = System.DateTime.Now;
+                TempData["mensaje"] = $"La postulacion del proveedor {postulacion.Proveedor.Nombre} ha sido aprobado ";
+            }
+            else
+            {
+                postulacion.Estado = PostulacionEstado.Rechazada;
+                postulacion.Fecha = System.DateTime.Now;
+                TempData["mensaje"] = $"La postulacion del proveedor {postulacion.Proveedor.Nombre} ha sido rechazada ";
+            }
+
+            postulacion.Proveedor = null;
+            postulacion.ProveedorId = tmpProveedor.ProveedorId;
+
             db.postulaciones.Update(postulacion);
             db.SaveChanges();
-            TempData["mensaje"] = $"La postulacion {postulacion.PostulacionId} ha sido actualizada existosamente";
+            TempData["mensaje"] = $"La postulacion {postulacion.PostulacionId} ha cambiado de estado existosamente";
             return RedirectToAction("Index");
-        }
 
-        //Borrar de una postulacion
-        //Enviar a un formulario con los datos de la postulacion a eliminar
-        [HttpGet]
-        public IActionResult Delete(int id)
-        {
-            Postulacion postulacion = db.postulaciones.Find(id);
-            return View(postulacion);
         }
-
-        //Eliminar una postulacion
-        [HttpPost]
-        public IActionResult Delete(Postulacion postulacion)
-        {
-            db.postulaciones.Remove(postulacion);
-            db.SaveChanges();
-            TempData["mensaje"] = $"La postulacion {postulacion.PostulacionId} ha sido eliminada existosamente";
-            return RedirectToAction("Index");
         }
-    }
 }

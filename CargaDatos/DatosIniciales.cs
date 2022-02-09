@@ -1296,7 +1296,7 @@ namespace CargaDatos
             };
             Postulacion PostDismap_2022 = new Postulacion()
             {
-                Nombre = "Dismap 2021",
+                Nombre = "Dismap 2022",
                 Estado = PostulacionEstado.Pendiente,
                 Fecha = new DateTime(2022, 2, 1),
                 Proveedor = Dismap,

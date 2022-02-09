@@ -19,8 +19,24 @@ namespace ConsoleApp
         public static Repositorio Crear()
         {
             // Lee la configuración acerca de qué base usar del archivo App.config
-            string dbtipo = ConfigurationManager.AppSettings[DBTipo];
-            string conn = ConfigurationManager.ConnectionStrings[dbtipo].ConnectionString;
+            string dbtipo;
+            string conn;
+
+            dbtipo = ConfigurationManager.AppSettings[DBTipo];
+            if (dbtipo == null)
+            {
+                dbtipo = "SqlServer";
+                conn = "Server = DESKTOP-975JAJB; Initial Catalog = SGA; trusted_connection = true;";
+                //dbtipo = "Postgres";
+                //conn = "Host=localhost; Database=SCP; Username=postgres; Password=12345;";
+                //dbtipo = "MySql";
+                //conn = "server=localhost; user=root; password=mc1723950968; database=SCP;";
+            }
+            else
+            {
+                conn = ConfigurationManager.ConnectionStrings[dbtipo].ConnectionString;
+            }
+            
             var serverVersion = new MySqlServerVersion(new Version(8, 0, 28));
 
             // Construye la conección acorde con el tipo

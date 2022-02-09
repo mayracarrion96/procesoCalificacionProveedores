@@ -17,37 +17,18 @@ namespace Procesos
             this.db = db;
         }
 
-        public bool Validacion(Postulacion postulaciones)
+        public bool Validacion(Proveedor proveedor, Postulacion postulacion)
         {
-            var temppostulacion = db.postulaciones
-                .Include(postulacion => postulacion.Proveedor)
-                .Include(postulacion => postulacion.Postulacion_Detalle)
-                    .ThenInclude(postulacion_dets => postulacion_dets.Calificacion)
 
+            ProAprobaciones apro = new ProAprobaciones(db);
 
-                .Single(postulacion => postulacion.PostulacionId == postulacion.PostulacionId)
-                ;
-
-           ProAprobaciones apro = new ProAprobaciones(db);
-                       
-
-            if (temppostulacion == null) return false;
-
-            foreach (var post in temppostulacion.Postulacion_Detalle)
+            if (apro.Califico(proveedor, postulacion))
             {
-                if (apro.Califico(temppostulacion.Proveedor, postulaciones))
-                {
-                    Console.WriteLine("  Aprobo: " + post.Nombre);
-                    return true;
-                }
-                else
-                {
-                    Console.WriteLine("  No Aprobo: " + post.Nombre);
-                    //return false;
-                }
+                return true;
             }
-
+            
             return false;
+            
         }
     }
 }

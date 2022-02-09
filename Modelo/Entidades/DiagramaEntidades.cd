@@ -1,59 +1,80 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Modelo.Entidades.Calificacion">
-    <Position X="5.5" Y="0.5" Width="1.5" />
+    <Position X="8.75" Y="0.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAQAAAEAAgEAAACBAACAAAAAIABAAAAAAAAAAAAAAg=</HashCode>
+      <HashCode>AAAQAAAEAAgEAAACBAACgAAAAIABAAAAAAAAAAAAAAg=</HashCode>
       <FileName>Entidades\Calificacion.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Modelo.Entidades.Configuracion">
-    <Position X="7.75" Y="0.5" Width="1.5" />
+    <Position X="11" Y="0.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAIAAAgAAAAAACAAAAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAIAAAAACAAAACAAAgAAAAAAAKAAAAAAAAAAAAAA=</HashCode>
       <FileName>Entidades\Configuracion.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Modelo.Entidades.Oferta">
-    <Position X="0.5" Y="0.5" Width="2" />
+    <Position X="4.25" Y="0.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AABAAAAAAQAAAAAgRAAIBAARAAAAAAAAAAACgAAAIAA=</HashCode>
+      <HashCode>AECAQAAAAwAAAAAAAAAAhAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Entidades\Oferta.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Modelo.Entidades.Periodo">
-    <Position X="7.75" Y="3.5" Width="1.75" />
+    <Position X="8.75" Y="3.75" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AACAAAAAAgAAAAAAAAAAAAAAAgAACAAAAAAAAAAgAAg=</HashCode>
+      <HashCode>AACAAAAAAgAAAAAAAAAAgAAAAgAACAAAAAAAAAAgAAg=</HashCode>
       <FileName>Entidades\Periodo.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Modelo.Entidades.Postulacion">
-    <Position X="3" Y="0.5" Width="1.75" />
+    <Position X="6.5" Y="0.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AABAQAAAAgAAAAEAIAAAAAABAAAAAAAAAAAAAAAAIAg=</HashCode>
+      <HashCode>AABAQAAAAwAAAAEAIAAAgAABAAAACAAAAAAAAAAAIAg=</HashCode>
       <FileName>Entidades\Postulacion.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Modelo.Entidades.Postulacion_Det">
-    <Position X="3" Y="3.25" Width="1.75" />
+    <Position X="6.5" Y="3.75" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AACAgAAAAQAAAAAAIAAAAAAAAIAACAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AACAgAAAAAAAAAAAIAAAgAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Entidades\Postulacion_Det.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Modelo.Entidades.Producto">
-    <Position X="0.5" Y="4" Width="2" />
+    <Position X="2.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAQAAAAABAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AEAAAAAAAAQIAAAABAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Entidades\Producto.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Modelo.Entidades.Proveedor">
-    <Position X="5.25" Y="3.75" Width="2" />
+    <Position X="2.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AACAAAAAAAAAAAAAACAAgAAAAAAACAAAAAAAAgAAIAI=</HashCode>
+      <HashCode>AACAAAAAAAAAAAAAACAAgAAAAIAAAAAAAAAAAgAAIAI=</HashCode>
       <FileName>Entidades\Proveedor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Modelo.Entidades.Marca">
+    <Position X="0.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAIAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entidades\Marca.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Modelo.Entidades.Oferta_Det">
+    <Position X="4.25" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAACAgRAAIgAAQAAAACAAAAAACgAAAAAA=</HashCode>
+      <FileName>Entidades\Oferta_Det.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Modelo.Entidades.Clasificacion">
+    <Position X="0.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABABAAAAAAAARAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entidades\Clasificacion.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

@@ -1304,7 +1304,6 @@ namespace CargaDatos
                 Periodo = Periodo_2022
 
             };
-
             Postulacion PostOnerom_2019 = new Postulacion()
             {
                 Nombre = "Onerom 2019",

@@ -60,7 +60,7 @@ namespace ConsoleApp
             }
 
             */
-            /*
+            
             using (var db = RepositorioBuilder.Crear())
             {
                 
@@ -88,7 +88,8 @@ namespace ConsoleApp
                 }
 
             }
-            */
+            
+            /*
             using (var db = RepositorioBuilder.Crear())
             {
                 ProValidacion valm = new ProValidacion(db);
@@ -104,7 +105,7 @@ namespace ConsoleApp
                 ;
             }
 
-
+            */
 
 
 
